@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Role;
+use App\Models\UploadFile;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -29,6 +31,11 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'phone' => $this->faker->phoneNumber(),
+            'address' => $this->faker->address,
+            'status' => $this->faker->randomElement(['active', 'inactive']),
+            'role_id' => Role::inRandomOrder()->first()->id ?? 1,
+            'avatar' => UploadFile::inRandomOrder()->first()->id ?? null,
         ];
     }
 

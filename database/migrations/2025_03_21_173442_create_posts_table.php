@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->unsignedBigInteger('image')->nullable();
             $table->unsignedBigInteger('user_id');
-            $table->timestamp('created_at')->useCurrent();
+            $table->timestamps();
             $table->foreign('image')->references('id')->on('upload_files')->onDelete('set null');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
